@@ -32,10 +32,4 @@ public class UserDaoImpl implements UserDao{
 		return listUser;*/
 	}
 
-	@Override
-	public User findUser(long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
