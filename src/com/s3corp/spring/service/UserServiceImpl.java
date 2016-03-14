@@ -35,22 +35,12 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User findById(long id) {
-		for (User user : users) {
-			if(user.getId() == id){
-				return user;
-			}
-		}
-		return null;
+		return userDao.findUser(id);
 	}
 
 	@Override
-	public User findByName(String name) {
-		for (User user : users) {
-			if(user.getName().equalsIgnoreCase(name)){
-				return user;
-			}
-		}
-		return null;
+	public List<User> findByName(String name) {
+		return userDao.findUser(name);
 	}
 
 	@Override

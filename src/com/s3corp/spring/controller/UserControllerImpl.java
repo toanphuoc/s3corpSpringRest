@@ -59,4 +59,14 @@ public class UserControllerImpl implements UserController{
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
+	@Override
+	@RequestMapping(value = "findUserByName/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<User>> getUser(@PathVariable("name") String name) {
+		List<User> users = userService.findByName(name);
+		if(users.isEmpty()){
+			return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+	}
+
 }

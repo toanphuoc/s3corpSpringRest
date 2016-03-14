@@ -9,4 +9,6 @@ public interface UserDao {
 	public List<User> listUser();
 	
 	User findUser(long id);
+	
+	List<User> findUser(String name);
 }

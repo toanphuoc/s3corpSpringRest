@@ -13,5 +13,7 @@ public interface UserController {
 	
 	public ResponseEntity<User> getUser(long id);
 	
+	public ResponseEntity<List<User>> getUser(String name);
+	
 	public ResponseEntity<Void> createUser(User user, UriComponentsBuilder ucBuilder);
 }
