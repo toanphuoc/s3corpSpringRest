@@ -2,6 +2,9 @@ package com.s3corp.spring.controller;
 
 import java.util.List;
 
+import javax.persistence.QueryHint;
+
+import org.hibernate.annotations.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -45,18 +49,22 @@ public class UserControllerImpl implements UserController{
 	}
 
 	@Override
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
-		if (userService.isUserExist(user)) {
-            System.out.println("A User with name " + user.getName() + " already exist");
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	public void createUser(
+			
+			@RequestParam(value = "name") String name,@RequestParam(value = "age") int age,
+											@RequestParam(value = "salary") double salary, UriComponentsBuilder ucBuilder) {
+//		if (userService.isUserExist(user)) {
+//            System.out.println("A User with name " + user.getName() + " already exist");
+//            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+//        }
+// 
+        userService.saveUser(name, age, salary);
  
-        userService.saveUser(user);
- 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
+//        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+	//	return userService.saveUser(name, age, salary);
 	}
 
 	@Override

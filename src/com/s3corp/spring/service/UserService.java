@@ -10,7 +10,7 @@ public interface UserService {
     
     List<User> findByName(String name);
      
-    void saveUser(User user);
+    void saveUser(String name, int age, double salary);
      
     void updateUser(User user);
      

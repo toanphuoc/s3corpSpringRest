@@ -3,6 +3,7 @@ package com.s3corp.spring.dao;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,6 +44,13 @@ public class UserDaoImpl implements UserDao{
 		String hql = "FROM User WHERE name LIKE :name";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.setParameter("name", name + "%").list();
+	}
+
+	@Override
+	@Transactional
+	public void createUser(User user) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(user);
 	}
 
 	

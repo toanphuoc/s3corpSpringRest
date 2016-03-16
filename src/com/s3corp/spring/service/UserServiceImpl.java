@@ -44,9 +44,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void saveUser(User user) {
-		user.setId(counter.incrementAndGet());
-		users.add(user);
+	public void saveUser(String name, int age, double salary) {
+		userDao.createUser(new User(name, age, salary));
 	}
 
 	@Override

@@ -15,5 +15,5 @@ public interface UserController {
 	
 	public ResponseEntity<List<User>> getUser(String name);
 	
-	public ResponseEntity<Void> createUser(User user, UriComponentsBuilder ucBuilder);
+	public void createUser(String name, int age, double salary, UriComponentsBuilder ucBuilder);
 }
